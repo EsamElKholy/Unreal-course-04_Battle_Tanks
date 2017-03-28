@@ -25,6 +25,7 @@ private:
 	void AimTowardsCrosshair();
 
 	bool GetSightRayHiyLocation(FVector &hitLocation) const;
+	bool GetLookDirection(FVector2D &screenLocation, FVector &worldDirection) const;
 
 private:
 	UPROPERTY(EditAnywhere)

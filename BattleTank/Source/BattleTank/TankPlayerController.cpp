@@ -55,7 +55,20 @@ bool ATankPlayerController::GetSightRayHiyLocation(FVector & hitLocation) const
 
 	FVector2D screenLocation = FVector2D(viewportSizeX * CrosshairXPosition, viewportSizeY * CrosshairYPosition);
 
+	FVector worldDirection;
+
+	if (GetLookDirection(screenLocation, worldDirection))
+	{
+		//..
+	}
+
 	return false;
+}
+
+bool ATankPlayerController::GetLookDirection(FVector2D &screenLocation, FVector &worldDirection) const
+{
+	FVector camLoc;
+	return DeprojectScreenPositionToWorld(screenLocation.X, screenLocation.Y, camLoc, worldDirection);
 }
 
 
