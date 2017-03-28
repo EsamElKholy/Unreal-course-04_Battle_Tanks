@@ -25,7 +25,7 @@ public:
 
 		
 public:
-	void AimAt(FVector hitLocation);
+	void AimAt(FVector hitLocation, float launchSpeed);
 
 	void SetBarrel(UStaticMeshComponent *barrel);
 
