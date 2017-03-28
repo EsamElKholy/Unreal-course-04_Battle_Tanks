@@ -2,7 +2,7 @@
 
 #include "BattleTank.h"
 #include "TankAimingComponent.h"
-
+#include "TankBarrel.h"
 
 // Sets default values for this component's properties
 UTankAimingComponent::UTankAimingComponent()
@@ -59,6 +59,7 @@ void UTankAimingComponent::AimAt(FVector hitLocation, float launchSpeed)
 		)
 	{
 		FVector aimDirection = launchVelocity.SafeNormal();
+		MoveBarrel(aimDirection);
 	}		
 
 	/*auto ourTankName = GetOwner()->GetName();
@@ -67,7 +68,16 @@ void UTankAimingComponent::AimAt(FVector hitLocation, float launchSpeed)
 	UE_LOG(LogTemp, Warning, TEXT("%s aiming at: %s , from: %s"), *ourTankName, *hitLocation.ToString(), *barrelLocation);*/
 }
 
-void UTankAimingComponent::SetBarrel(UStaticMeshComponent *barrel) 
+void UTankAimingComponent::SetBarrel(UTankBarrel *barrel)
 {
 	Barrel = barrel;
+}
+
+void UTankAimingComponent::MoveBarrel(FVector aimDirection)
+{
+	auto barrelRotator = Barrel->GetForwardVector().Rotation();
+	auto aimRotator = aimDirection.Rotation();
+	auto deltaRotator = aimRotator - barrelRotator;
+
+	Barrel->Elevate(5);
 }

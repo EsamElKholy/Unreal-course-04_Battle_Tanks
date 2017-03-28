@@ -30,7 +30,7 @@ public:
 	void AimAt(FVector hitLocation);
 	
 	UFUNCTION(BlueprintCallable, Category = Setup)
-	void SetBarrel(UStaticMeshComponent *barrel);
+	void SetBarrel(UTankBarrel *barrel);
 
 protected:
 	UTankAimingComponent *TankAimingComponent = nullptr;
