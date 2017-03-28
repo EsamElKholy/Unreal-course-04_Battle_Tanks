@@ -39,6 +39,19 @@ void ATankPlayerController::AimTowardsCrosshair()
 	}
 
 	//..
+	FVector hitLocation;
+
+	if (GetSightRayHiyLocation(hitLocation)) 
+	{
+		//..
+	}
+}
+
+bool ATankPlayerController::GetSightRayHiyLocation(FVector & hitLocation) const
+{
+	hitLocation = FVector(0.0f);
+
+	return false;
 }
 
 
