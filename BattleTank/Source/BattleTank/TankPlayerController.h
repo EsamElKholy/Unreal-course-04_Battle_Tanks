@@ -25,4 +25,11 @@ private:
 	void AimTowardsCrosshair();
 
 	bool GetSightRayHiyLocation(FVector &hitLocation) const;
+
+private:
+	UPROPERTY(EditAnywhere)
+	float CrosshairXPosition = 0.5f;
+	
+	UPROPERTY(EditAnywhere)
+	float CrosshairYPosition = 0.33333f;
 };
