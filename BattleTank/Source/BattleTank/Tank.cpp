@@ -42,3 +42,8 @@ void ATank::SetTurret(UTankTurret *turret)
 {
 	TankAimingComponent->SetTurret(turret);
 }
+
+void ATank::Fire() 
+{
+
+}

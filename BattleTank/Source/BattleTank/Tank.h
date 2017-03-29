@@ -27,14 +27,16 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 public:
-	void AimAt(FVector hitLocation);
-	
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetBarrel(UTankBarrel *barrel);
 
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	void SetTurret(UTankTurret *turret);
 
+	UFUNCTION(BlueprintCallable, Category = Firing)
+	void Fire();
+
+	void AimAt(FVector hitLocation);
 protected:
 	UTankAimingComponent *TankAimingComponent = nullptr;
 
