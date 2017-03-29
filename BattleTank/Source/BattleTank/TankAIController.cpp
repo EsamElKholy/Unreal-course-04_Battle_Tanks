@@ -56,4 +56,5 @@ void ATankAIController::AimTowardsPlayer()
 	}
 
 	controlledTank->AimAt(playerTank->GetActorLocation());
+	controlledTank->Fire();
 }

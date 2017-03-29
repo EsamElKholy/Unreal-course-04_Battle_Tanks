@@ -10,7 +10,7 @@ UTankAimingComponent::UTankAimingComponent()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
-	PrimaryComponentTick.bCanEverTick = true;
+	PrimaryComponentTick.bCanEverTick = false;
 
 	// ...
 }
@@ -55,18 +55,13 @@ void UTankAimingComponent::AimAt(FVector hitLocation, float launchSpeed)
 				false,
 				0,
 				0,
-				ESuggestProjVelocityTraceOption::Type::DoNotTrace
+				ESuggestProjVelocityTraceOption::DoNotTrace
 			)
 		)
 	{
 		FVector aimDirection = launchVelocity.SafeNormal();
 		MoveBarrel(aimDirection);
-	}		
-
-	/*auto ourTankName = GetOwner()->GetName();
-	auto barrelLocation = Barrel->GetComponentLocation().ToString();
-
-	UE_LOG(LogTemp, Warning, TEXT("%s aiming at: %s , from: %s"), *ourTankName, *hitLocation.ToString(), *barrelLocation);*/
+	}	
 }
 
 void UTankAimingComponent::SetBarrel(UTankBarrel *barrel)
@@ -87,10 +82,10 @@ void UTankAimingComponent::MoveBarrel(FVector aimDirection)
 
 	Barrel->Elevate(deltaRotator.Pitch);
 
-	if (!Turret)
+	/*if (!Turret)
 	{
 		return;
-	}
+	}*/
 
 	Turret->RotateHorizontally(deltaRotator.Yaw);
 }

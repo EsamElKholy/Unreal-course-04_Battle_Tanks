@@ -62,31 +62,31 @@ bool ATankPlayerController::GetSightRayHiyLocation(FVector & hitLocation) const
 	if (GetLookDirection(screenLocation, worldDirection))
 	{
 		//..
-		return GetLookVectorHitLocation(worldDirection, hitLocation);
+		GetLookVectorHitLocation(worldDirection, hitLocation);
 	}
 
-	return false;
+	return true;
 }
 
-bool ATankPlayerController::GetLookDirection(FVector2D &screenLocation, FVector &worldDirection) const
+bool ATankPlayerController::GetLookDirection(FVector2D screenLocation, FVector &worldDirection) const
 {
 	FVector camLoc;
 	return DeprojectScreenPositionToWorld(screenLocation.X, screenLocation.Y, camLoc, worldDirection);
 }
 
-bool ATankPlayerController::GetLookVectorHitLocation(FVector & lookDirection, FVector & hitLocation) const
+bool ATankPlayerController::GetLookVectorHitLocation(FVector lookDirection, FVector & hitLocation) const
 {
 	FHitResult hitResult;
 	
 	FVector startLocation = PlayerCameraManager->GetCameraLocation();
-	FVector endLocation = startLocation + lookDirection * LineTraceRange;
+	FVector endLocation = startLocation + (lookDirection * LineTraceRange);
 
 	if (GetWorld()->
 		LineTraceSingleByChannel(
 								hitResult,
 								startLocation,
 								endLocation,
-								ECC_Visibility
+								ECollisionChannel::ECC_Visibility
 								)
 		)
 	{
