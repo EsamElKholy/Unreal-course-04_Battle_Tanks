@@ -4,19 +4,29 @@
 #include "TankMovementComponent.h"
 #include "TankTrack.h"
 
-void UTankMovementComponent::IntendMoveForward(float _throw)
-{
-	LeftTrack->SetThrottle(_throw);
-	RightTrack->SetThrottle(_throw);
+void UTankMovementComponent::Initialize(UTankTrack * left, UTankTrack * right)
+{RightTrack = right;
+	LeftTrack = left;
 }
 
-void UTankMovementComponent::Initialize(UTankTrack * left, UTankTrack * right)
+void UTankMovementComponent::IntendMoveForward(float _throw)
 {
-	if (!left || !right)
+	if (!LeftTrack || !RightTrack)
 	{
 		return;
 	}
 
-	RightTrack = right;
-	LeftTrack = left;
+	LeftTrack->SetThrottle(_throw);
+	RightTrack->SetThrottle(_throw);
+}
+
+void UTankMovementComponent::IntendTurnRight(float _throw)
+{
+	if (!LeftTrack || !RightTrack)
+	{
+		return;
+	}
+
+	LeftTrack->SetThrottle(_throw);
+	RightTrack->SetThrottle(-_throw);
 }
