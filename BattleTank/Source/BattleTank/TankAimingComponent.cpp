@@ -11,7 +11,7 @@ UTankAimingComponent::UTankAimingComponent()
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = false;
-
+	bWantsBeginPlay = true;
 	// ...
 }
 
@@ -44,22 +44,23 @@ void UTankAimingComponent::AimAt(FVector hitLocation, float launchSpeed)
 	FVector launchVelocity;
 	FVector startLocation = Barrel->GetSocketLocation(FName("Projectile"));
 
+	bool hasSolution = UGameplayStatics::SuggestProjectileVelocity
+	(
+		this,
+		launchVelocity,
+		startLocation,
+		hitLocation,
+		launchSpeed,
+		false,
+		0,
+		0,
+		ESuggestProjVelocityTraceOption::DoNotTrace
+	);
+
 	//..
-	if (UGameplayStatics::SuggestProjectileVelocity
-			(
-				this,
-				launchVelocity,
-				startLocation,
-				hitLocation,
-				launchSpeed,
-				false,
-				0,
-				0,
-				ESuggestProjVelocityTraceOption::DoNotTrace
-			)
-		)
+	if (hasSolution)
 	{
-		FVector aimDirection = launchVelocity.SafeNormal();
+		FVector aimDirection = launchVelocity.GetSafeNormal();
 		MoveBarrel(aimDirection);
 	}	
 }

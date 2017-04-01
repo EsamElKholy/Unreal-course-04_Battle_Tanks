@@ -47,7 +47,7 @@ void ATank::SetTurret(UTankTurret *turret)
 
 void ATank::Fire() 
 {
-	if (!Barrel)
+	if (!Barrel || !ProjectileBlueprint)
 	{
 		return;
 	}
