@@ -33,6 +33,13 @@ void ATankAIController::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	AimTowardsPlayer();
+
+	auto playerTank = GetPlayerTank();
+
+	if (playerTank)
+	{
+		MoveToActor(playerTank, AcceptanceRadius);
+	}
 }
 
 ATank* ATankAIController::GetControlledTank() const

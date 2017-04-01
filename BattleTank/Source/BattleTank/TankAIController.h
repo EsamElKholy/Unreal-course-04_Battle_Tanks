@@ -25,4 +25,7 @@ private:
 	ATank* GetPlayerTank() const;
 
 	void AimTowardsPlayer();
+
+private:
+	float AcceptanceRadius = 3000.0f;
 };

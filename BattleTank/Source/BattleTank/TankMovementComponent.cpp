@@ -30,3 +30,15 @@ void UTankMovementComponent::IntendTurnRight(float _throw)
 	LeftTrack->SetThrottle(_throw);
 	RightTrack->SetThrottle(-_throw);
 }
+
+void UTankMovementComponent::RequestDirectMove(const FVector & MoveVelocity, bool bForceMaxSpeed)
+{
+	auto tankForward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+	auto AIForwardIntention = MoveVelocity.GetSafeNormal();
+
+	float angle = FVector::DotProduct(tankForward, AIForwardIntention);
+	float right = FVector::CrossProduct(tankForward, AIForwardIntention).Z;
+
+	IntendMoveForward(angle);
+	IntendTurnRight(right);
+}
