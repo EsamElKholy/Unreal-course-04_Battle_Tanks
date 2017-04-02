@@ -6,7 +6,7 @@
 #include "TankPlayerController.generated.h" // It has to be the last thing to include
 
 class ATank;
-
+class UTankAimingComponent;
 /**
  * 
  */
@@ -23,6 +23,9 @@ private:
 protected:
 	UFUNCTION(BlueprintCallable, Category = Setup)
 	ATank* GetControlledTank() const;
+
+	UFUNCTION(BlueprintImplementableEvent, Category = Setup)
+	void FoundTankAimingComponent(UTankAimingComponent *aimingComponent);
 
 private:	
 	void AimTowardsCrosshair();

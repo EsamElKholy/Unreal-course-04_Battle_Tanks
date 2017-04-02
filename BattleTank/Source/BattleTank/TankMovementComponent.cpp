@@ -5,13 +5,14 @@
 #include "TankTrack.h"
 
 void UTankMovementComponent::Initialize(UTankTrack * left, UTankTrack * right)
-{RightTrack = right;
+{
+	RightTrack = right;
 	LeftTrack = left;
 }
 
 void UTankMovementComponent::IntendMoveForward(float _throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		return;
 	}
@@ -22,7 +23,7 @@ void UTankMovementComponent::IntendMoveForward(float _throw)
 
 void UTankMovementComponent::IntendTurnRight(float _throw)
 {
-	if (!LeftTrack || !RightTrack)
+	if (!ensure(LeftTrack && RightTrack))
 	{
 		return;
 	}

@@ -30,7 +30,7 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void ATank::AimAt(FVector hitLocation)
 {
-	if (!TankAimingComponent)
+	if (!ensure(TankAimingComponent))
 	{
 		return;
 	}
@@ -45,7 +45,7 @@ void ATank::SetBarrel(UTankBarrel *barrel)
 
 void ATank::Fire() 
 {
-	if (!Barrel || !ProjectileBlueprint)
+	if (!ensure(Barrel && ProjectileBlueprint))
 	{
 		return;
 	}
