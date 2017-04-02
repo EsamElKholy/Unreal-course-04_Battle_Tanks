@@ -43,6 +43,8 @@ public:
 
 	void AimAt(FVector hitLocation);
 
+	EFiringState GetFiringState();
+
 private:
 	void MoveBarrel(FVector aimDirection);
 	bool IsBarrelMoving();

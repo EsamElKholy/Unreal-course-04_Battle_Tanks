@@ -35,5 +35,9 @@ void ATankAIController::AimTowardsPlayer()
 
 	auto aimingComponent = GetPawn()->FindComponentByClass<UTankAimingComponent>();
 	aimingComponent->AimAt(playerTank->GetActorLocation());
-	aimingComponent->Fire();
+
+	if (aimingComponent->GetFiringState() == EFiringState::Locked)
+	{
+		aimingComponent->Fire();
+	}
 }

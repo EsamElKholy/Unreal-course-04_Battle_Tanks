@@ -23,6 +23,7 @@ private:
 private:
 	void AimTowardsPlayer();
 
-private:
-	float AcceptanceRadius = 3000.0f;
+protected:
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float AcceptanceRadius = 80000.0f;
 };
