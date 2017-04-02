@@ -32,7 +32,11 @@ void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, F
 	//Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
-	if ((FPlatformTime::Seconds() - LastFireTime) < FireCoolDown)
+	if (RoundsLeft <= 0)
+	{
+		FiringState = EFiringState::OutOfAmmo;
+	}
+	else if ((FPlatformTime::Seconds() - LastFireTime) < FireCoolDown)
 	{
 		FiringState = EFiringState::Reloading;
 	}
@@ -96,6 +100,11 @@ void UTankAimingComponent::AimAt(FVector hitLocation)
 EFiringState UTankAimingComponent::GetFiringState()
 {
 	return FiringState;
+}
+
+int UTankAimingComponent::GetRoundsLeft() const
+{
+	return RoundsLeft;
 }
 
 void UTankAimingComponent::MoveBarrel(FVector aimDirection)
