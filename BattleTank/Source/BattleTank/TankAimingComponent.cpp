@@ -29,7 +29,7 @@ void UTankAimingComponent::BeginPlay()
 // Called every frame
 void UTankAimingComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	//Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
 	if ((FPlatformTime::Seconds() - LastFireTime) < FireCoolDown)
@@ -53,7 +53,7 @@ bool UTankAimingComponent::IsBarrelMoving()
 		return false;
 	}
 
-	return (!Barrel->GetForwardVector().Equals(AimDirection, 0.01f));
+	return !(Barrel->GetForwardVector().Equals(AimDirection, 0.01f));
 }
 
 void UTankAimingComponent::Initialize(UTankBarrel * barrel, UTankTurret * turret)
