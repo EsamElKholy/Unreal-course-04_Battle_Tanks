@@ -33,7 +33,6 @@ protected:
 public:	
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 		
 public:
 	UFUNCTION(BlueprintCallable, Category = Setup)
@@ -46,6 +45,7 @@ public:
 
 private:
 	void MoveBarrel(FVector aimDirection);
+	bool IsBarrelMoving();
 
 private:
 	UPROPERTY(EditAnywhere, Category = Firing)
@@ -61,6 +61,9 @@ private:
 
 	UTankBarrel *Barrel = nullptr;
 	UTankTurret *Turret = nullptr;
+
+	FVector AimDirection = FVector(0);
+
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = State)
 	EFiringState FiringState = EFiringState::Reloading;
