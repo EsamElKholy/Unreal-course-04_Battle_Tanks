@@ -17,7 +17,11 @@ private:
 	UTankTrack();
 
 private:
+	virtual void BeginPlay() override;
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent *hitComponent, AActor *otherActor, UPrimitiveComponent *otherComponent, FVector normalImpulse, const FHitResult &hit);
 
 public:
 	UFUNCTION(BlueprintCallable, Category = Input)
