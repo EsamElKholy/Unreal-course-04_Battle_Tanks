@@ -47,21 +47,24 @@ public:
 	EFiringState GetFiringState();
 
 	UFUNCTION(BlueprintCallable, Category = Firing)
-	int GetRoundsLeft() const;
+	int32 GetRoundsLeft() const;
 
 private:
 	void MoveBarrel(FVector aimDirection);
 	bool IsBarrelMoving();
 
 private:
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float LaunchSpeed = 80000.0f;
 
-	UPROPERTY(EditAnywhere, Category = Setup)
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
 	TSubclassOf<AProjectile> ProjectileBlueprint;
 
-	UPROPERTY(EditAnywhere, Category = Firing)
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
 	float FireCoolDown = 3;
+
+	UPROPERTY(EditDefaultsOnly, Category = Firing)
+	int32 RoundsLeft = 3;
 
 	double LastFireTime = 0;
 
@@ -70,7 +73,6 @@ private:
 
 	FVector AimDirection = FVector(0);
 
-	int RoundsLeft = 3;
 
 protected:
 	UPROPERTY(BlueprintReadOnly, Category = State)
