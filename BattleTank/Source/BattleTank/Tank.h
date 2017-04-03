@@ -17,8 +17,10 @@ public:
 	ATank();
 
 public:
-	void BeginPlay() override;
 	virtual float TakeDamage(float damageAmount, FDamageEvent const &damageEvent, AController *eventInstigator, AActor *damageCauser) override;
+
+private:
+	virtual void BeginPlay() override;
 
 public:
 	UFUNCTION(BlueprintPure, Category = Health)
