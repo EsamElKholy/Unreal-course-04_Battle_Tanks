@@ -26,6 +26,8 @@ private:
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent *hitComponent, AActor *otherActor, UPrimitiveComponent *otherComponent, FVector normalImpulse, const FHitResult &hit);
 
+	void OnTimerExpire();
+
 public:
 	void LaunchProjectile(float speed);
 
@@ -43,4 +45,7 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = Components)
 	URadialForceComponent *ExplosionForce = nullptr;
+
+	UPROPERTY(EditDefaultsOnly, Category = Setup)
+	float DestroyDelay = 10;
 };
