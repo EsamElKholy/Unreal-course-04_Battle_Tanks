@@ -20,8 +20,13 @@ private:
 
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn *inPawn) override;
+
 private:
 	void AimTowardsPlayer();
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = Setup)
