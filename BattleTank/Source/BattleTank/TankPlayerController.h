@@ -20,6 +20,8 @@ private:
 
 	virtual void Tick(float DeltaTime) override;
 
+	virtual void SetPawn(APawn *inPawn) override;
+
 protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = Setup)
 	void FoundTankAimingComponent(UTankAimingComponent *aimingComponent);
@@ -30,6 +32,9 @@ private:
 	bool GetSightRayHiyLocation(FVector &hitLocation) const;
 	bool GetLookDirection(FVector2D screenLocation, FVector &worldDirection) const;
 	bool GetLookVectorHitLocation(FVector lookDirection, FVector &hitLocation) const;
+
+	UFUNCTION()
+	void OnPossessedTankDeath();
 
 private:
 	UPROPERTY(EditAnywhere)

@@ -17,6 +17,7 @@ public:
 	ATank();
 
 public:
+	void BeginPlay() override;
 	virtual float TakeDamage(float damageAmount, FDamageEvent const &damageEvent, AController *eventInstigator, AActor *damageCauser) override;
 
 public:
@@ -30,6 +31,6 @@ private:
 	int32 MaxHealth = 100;
 	
 	UPROPERTY(VisibleAnywhere, Category = Setup)
-	int32 CurrentHealth = MaxHealth;
+	int32 CurrentHealth;
 
 };
